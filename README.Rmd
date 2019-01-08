@@ -1,0 +1,54 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  cache = TRUE
+)
+```
+# One R Package a Day
+
+Checking my assumption rOpenSci packages were picked relatively often by [the RLangPackage Twitter account](https://twitter.com/RLangPackage) (read [its creation story](https://stevenmortimer.com/one-r-package-a-day/)).
+
+## Get RLangPackage's timeline
+
+Cf https://rtweet.info/articles/auth.html
+
+```{r timeline}
+timeline <- rtweet::get_timeline("RLangPackage", n = 3200)
+```
+
+## Parse URLs
+
+I'll keep only tweets with a single URL, that needs to be a GitHub URL (a few times the account answered tweets of other accounts and included URLs)
+
+```{r urls}
+urls <- timeline$urls_expanded_url[lengths(timeline$urls_expanded_url) == 1]
+urls <- unlist(urls)
+urls <- urls[grepl("github\\.com", urls)]
+urls <- urltools::url_parse(urls)
+urls <- dplyr::group_by(urls, path)
+urls <- dplyr::mutate(urls, 
+                      account = gsub("\\/.*", "", path), 
+                      repo = gsub(".*\\/", "", path))
+urls <- dplyr::ungroup(urls)
+
+```
+
+## THE ANSWER
+
+Out of `r nrow(urls)` featured packages, `r sum(urls$account == "ropensci" | urls$account == "ropenscilabs")` (`sum(urls$account == "ropensci" | urls$account == "ropenscilabs")`) were rOpenSci packages. It's not a lot but...
+
+```{r answer}
+library("magrittr")
+dplyr::count(urls, account, sort = TRUE) %>%
+  dplyr::filter(n >= 2) %>%
+  knitr::kable()
+```
+
+The ropensci GitHub organization is the most represented one! 
