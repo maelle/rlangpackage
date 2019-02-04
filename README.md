@@ -1,12 +1,14 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-One R Package a Day
-===================
 
-Checking my assumption rOpenSci packages were picked relatively often by [the RLangPackage Twitter account](https://twitter.com/RLangPackage) (read [its creation story](https://stevenmortimer.com/one-r-package-a-day/)).
+# One R Package a Day
 
-Get RLangPackage's timeline
----------------------------
+Checking my assumption rOpenSci packages were picked relatively often by
+[the RLangPackage Twitter account](https://twitter.com/RLangPackage)
+(read [its creation
+story](https://stevenmortimer.com/one-r-package-a-day/)).
+
+## Get RLangPackage’s timeline
 
 Cf <https://rtweet.info/articles/auth.html>
 
@@ -14,10 +16,11 @@ Cf <https://rtweet.info/articles/auth.html>
 timeline <- rtweet::get_timeline("RLangPackage", n = 3200)
 ```
 
-Parse URLs
-----------
+## Parse URLs
 
-I'll keep only tweets with a single URL, that needs to be a GitHub URL (a few times the account answered tweets of other accounts and included URLs)
+I’ll keep only tweets with a single URL, that needs to be a GitHub URL
+(a few times the account answered tweets of other accounts and included
+URLs)
 
 ``` r
 urls <- timeline$urls_expanded_url[lengths(timeline$urls_expanded_url) == 1]
@@ -31,10 +34,11 @@ urls <- dplyr::mutate(urls,
 urls <- dplyr::ungroup(urls)
 ```
 
-THE ANSWER
-----------
+## THE ANSWER
 
-Out of 159 featured packages, 8 (`sum(urls$account == "ropensci" | urls$account == "ropenscilabs")`) were rOpenSci packages. It's not a lot but...
+Out of 177 featured packages, 10 (`sum(urls$account == "ropensci" |
+urls$account == "ropenscilabs")`) were rOpenSci packages. It’s not a lot
+but…
 
 ``` r
 library("magrittr")
@@ -43,24 +47,28 @@ dplyr::count(urls, account, sort = TRUE) %>%
   knitr::kable()
 ```
 
-| account      |    n|
-|:-------------|----:|
-| ropensci     |    7|
-| hadley       |    4|
-| mhahsler     |    4|
-| rstudio      |    4|
-| hrbrmstr     |    3|
-| stan-dev     |    3|
-| yihui        |    3|
-| csgillespie  |    2|
-| davidgohel   |    2|
-| eddelbuettel |    2|
-| edwindj      |    2|
-| gforge       |    2|
-| jeroen       |    2|
-| renkun-ken   |    2|
-| tpq          |    2|
-| wahani       |    2|
-| yanyachen    |    2|
+| account         | n |
+| :-------------- | -: |
+| ropensci        | 8 |
+| rstudio         | 5 |
+| hadley          | 4 |
+| mhahsler        | 4 |
+| hrbrmstr        | 3 |
+| stan-dev        | 3 |
+| yihui           | 3 |
+| csgillespie     | 2 |
+| davidgohel      | 2 |
+| eddelbuettel    | 2 |
+| edwindj         | 2 |
+| gforge          | 2 |
+| henrikbengtsson | 2 |
+| jeroen          | 2 |
+| juba            | 2 |
+| kbroman         | 2 |
+| renkun-ken      | 2 |
+| ropenscilabs    | 2 |
+| tpq             | 2 |
+| wahani          | 2 |
+| yanyachen       | 2 |
 
-The ropensci GitHub organization is the most represented one!
+The ropensci GitHub organization is the most represented one\!
