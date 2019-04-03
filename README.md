@@ -36,7 +36,7 @@ urls <- dplyr::ungroup(urls)
 
 ## THE ANSWER
 
-Out of 177 featured packages, 10 (`sum(urls$account == "ropensci" |
+Out of 225 featured packages, 16 (`sum(urls$account == "ropensci" |
 urls$account == "ropenscilabs")`) were rOpenSci packages. It’s not a lot
 but…
 
@@ -47,28 +47,33 @@ dplyr::count(urls, account, sort = TRUE) %>%
   knitr::kable()
 ```
 
-| account         | n |
-| :-------------- | -: |
-| ropensci        | 8 |
-| rstudio         | 5 |
-| hadley          | 4 |
-| mhahsler        | 4 |
-| hrbrmstr        | 3 |
-| stan-dev        | 3 |
-| yihui           | 3 |
-| csgillespie     | 2 |
-| davidgohel      | 2 |
-| eddelbuettel    | 2 |
-| edwindj         | 2 |
-| gforge          | 2 |
-| henrikbengtsson | 2 |
-| jeroen          | 2 |
-| juba            | 2 |
-| kbroman         | 2 |
-| renkun-ken      | 2 |
-| ropenscilabs    | 2 |
-| tpq             | 2 |
-| wahani          | 2 |
-| yanyachen       | 2 |
+| account            |  n |
+| :----------------- | -: |
+| ropensci           | 12 |
+| rstudio            |  7 |
+| hadley             |  5 |
+| mhahsler           |  4 |
+| ropenscilabs       |  4 |
+| davidgohel         |  3 |
+| eddelbuettel       |  3 |
+| hrbrmstr           |  3 |
+| stan-dev           |  3 |
+| yihui              |  3 |
+| christophergandrud |  2 |
+| csgillespie        |  2 |
+| edwindj            |  2 |
+| florianhartig      |  2 |
+| gforge             |  2 |
+| henrikbengtsson    |  2 |
+| ironholds          |  2 |
+| jeroen             |  2 |
+| juba               |  2 |
+| kbroman            |  2 |
+| leeper             |  2 |
+| renkun-ken         |  2 |
+| tpq                |  2 |
+| wahani             |  2 |
+| wrathematics       |  2 |
+| yanyachen          |  2 |
 
 The ropensci GitHub organization is the most represented one\!
